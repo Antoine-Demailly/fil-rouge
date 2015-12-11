@@ -6,3 +6,13 @@ blog:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+current_time:
+    path: /current-time
+    defaults:
+        _controller: AppBundle:Time:currentTime
+
+square:
+    path: /square/{number}
+    defaults:
+        _controller: AppBundle:Time:square
