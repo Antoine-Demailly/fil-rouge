@@ -3,6 +3,7 @@
 namespace BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Category
@@ -12,6 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
+     */
+    protected $posts;
+
+    public function __construct()
+    {
+      $this->posts = new ArrayCollection();
+    }
+
     /**
      * @var integer
      *

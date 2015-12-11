@@ -3,6 +3,8 @@
 namespace BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use BlogBundle\Repository\PostRepository;
 
 /**
  * Post
@@ -12,6 +14,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Post
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="Post")
+     */
+    private $category;
+
+    /**
+     * @var string $slug
+     * @Gedmo\Slug(fields={"title"}, updatable=false, separator="-")
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
     /**
      * @var integer
      *
@@ -40,7 +54,7 @@ class Post
      *
      * @ORM\Column(name="is_published", type="boolean")
      */
-    private $isPublished;
+    private $isPublished = false;
 
 
     /**
@@ -123,5 +137,10 @@ class Post
     public function getIsPublished()
     {
         return $this->isPublished;
+    }
+
+    public function getSlug()
+    {
+      return $this->slug;
     }
 }
