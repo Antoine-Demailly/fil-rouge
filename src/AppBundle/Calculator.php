@@ -1,11 +1,10 @@
 <?php
 namespace AppBundle;
 
-class Calculator{
-
+class Calculator
+{
   public function square($number)
   {
     return ($number * $number);
   }
-
 }
