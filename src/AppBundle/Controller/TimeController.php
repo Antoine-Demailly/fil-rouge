@@ -4,11 +4,14 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class TimeController extends Controller{
-
+class TimeController extends Controller
+{
   public function currentTimeAction()
   {
-      return new Response('hello World');
+      $date = new \DateTime();
+      return $this->render('currenttime.html.twig', array(
+        'date' => $date,
+      ));
   }
 
   public function squareAction($number)
